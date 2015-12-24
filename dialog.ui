@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>479</width>
-    <height>487</height>
+    <height>556</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,9 +25,9 @@
     </widget>
    </item>
    <item>
-    <layout class="QFormLayout" name="generationArea">
+    <layout class="QGridLayout" name="inputLay">
      <item row="0" column="0">
-      <layout class="QVBoxLayout" name="mainCustomize">
+      <layout class="QVBoxLayout" name="browseLay">
        <item>
         <widget class="QPushButton" name="browse">
          <property name="toolTip">
@@ -51,40 +51,10 @@
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QLabel" name="rootText">
-         <property name="text">
-          <string>Root Access:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="rootBox"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="userText">
-         <property name="text">
-          <string>User Access:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="userBox"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="worldText">
-         <property name="text">
-          <string>World Access:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="worldBox"/>
-       </item>
       </layout>
      </item>
-     <item row="0" column="1">
-      <layout class="QVBoxLayout" name="options">
+     <item row="0" column="1" rowspan="2">
+      <layout class="QVBoxLayout" name="optionsLay">
        <item>
         <widget class="QCheckBox" name="sub">
          <property name="toolTip">
@@ -111,23 +81,164 @@
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + V&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string>Feedback</string>
+          <string>Verbose (feedback window)</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
+     <item row="1" column="0">
+      <widget class="QTabWidget" name="permissionsTab">
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <widget class="QWidget" name="comBoxTab">
+        <attribute name="title">
+         <string>Combo Box</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QLabel" name="rootText">
+           <property name="text">
+            <string>Root Access:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="rootBox"/>
+         </item>
+         <item>
+          <widget class="QLabel" name="userText">
+           <property name="text">
+            <string>User Access:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="userBox"/>
+         </item>
+         <item>
+          <widget class="QLabel" name="worldText">
+           <property name="text">
+            <string>World Access:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="worldBox"/>
+         </item>
+        </layout>
+        <zorder>rootBox</zorder>
+        <zorder>userText</zorder>
+        <zorder>userBox</zorder>
+        <zorder>worldBox</zorder>
+        <zorder>worldText</zorder>
+        <zorder>rootText</zorder>
+       </widget>
+       <widget class="QWidget" name="cheBoxTab">
+        <attribute name="title">
+         <string>Check Boxes</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QTabWidget" name="cheBoxTabs">
+           <property name="currentIndex">
+            <number>2</number>
+           </property>
+           <widget class="QWidget" name="rootTab">
+            <attribute name="title">
+             <string>Root</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QCheckBox" name="rReadBox">
+               <property name="text">
+                <string>Read</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="rWriteBox">
+               <property name="text">
+                <string>Write</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="rExeBox">
+               <property name="text">
+                <string>Execute</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="userTab">
+            <attribute name="title">
+             <string>User</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QCheckBox" name="uReadBox">
+               <property name="text">
+                <string>Read</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="uExeBox">
+               <property name="text">
+                <string>Execute</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="uWriteBox">
+               <property name="text">
+                <string>Write</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="worldTab">
+            <attribute name="title">
+             <string>World</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QCheckBox" name="wReadBox">
+               <property name="text">
+                <string>Read</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="wExeBox">
+               <property name="text">
+                <string>Execute</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="wWriteBox">
+               <property name="text">
+                <string>Write</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QVBoxLayout" name="outputArea">
+    <layout class="QVBoxLayout" name="outputLay">
      <item>
       <widget class="QPushButton" name="gen">
        <property name="toolTip">
@@ -189,7 +300,6 @@
   <tabstop>run</tabstop>
   <tabstop>copy</tabstop>
   <tabstop>pathOut</tabstop>
-  <tabstop>rootBox</tabstop>
   <tabstop>userBox</tabstop>
   <tabstop>worldBox</tabstop>
   <tabstop>sub</tabstop>

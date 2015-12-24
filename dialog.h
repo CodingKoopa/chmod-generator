@@ -32,7 +32,17 @@ private:
     QString read();
     void write();
 
+    //proto for creating scs
     void createShortcuts();
+
+    //proto for generating combobox output
+    void comBoxGen();
+
+    //proto for generation checkbox output
+    void cheBoxGen();
+
+    //proto for getting options/arguments
+    QString argConfg();
 };
 
 #endif // DIALOG_H

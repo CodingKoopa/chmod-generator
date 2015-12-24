@@ -16,7 +16,8 @@ SOURCES += main.cpp\
         dialog.cpp \
     addcomboboxitems.cpp \
     remember.cpp \
-    shortcuts.cpp
+    shortcuts.cpp \
+    generation.cpp
 
 HEADERS  += dialog.h
 

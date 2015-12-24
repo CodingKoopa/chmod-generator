@@ -5,6 +5,8 @@
 #include <QClipboard>
 #include <QMessageBox>
 
+#include <QDebug>
+
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
@@ -41,33 +43,15 @@ void Dialog::on_browse_clicked()
 
 void Dialog::on_gen_clicked()
 {
-    //get each combo box index
-    int root(ui->rootBox->currentIndex());
-    int user(ui->userBox->currentIndex());
-    int world(ui->worldBox->currentIndex());
-
-    //configure args
-    QString args;
-    if(ui->sub->isChecked() == true)
+    if (ui->permissionsTab->currentIndex() == 0)
     {
-        args.append("-R ");
+        comBoxGen();
     }
 
-    if(ui->force->isChecked() == true)
+    if (ui->permissionsTab->currentIndex() == 1)
     {
-        args.append("-f ");
+        cheBoxGen();
     }
-
-    if(ui->verbose->isChecked() == true)
-    {
-        args.append("-v ");
-    }
-
-    //output choices and pathOut to output box
-    ui->output->document()->setPlainText("chmod " + args + QString::number(root) + QString::number(user)
-    + QString::number(world) + " " + ui->pathOut->toPlainText());
-
-    write();
 }
 
 
