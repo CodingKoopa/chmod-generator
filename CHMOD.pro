@@ -15,7 +15,8 @@ TEMPLATE = app
 SOURCES += main.cpp\
         dialog.cpp \
     addcomboboxitems.cpp \
-    remember.cpp
+    remember.cpp \
+    shortcuts.cpp
 
 HEADERS  += dialog.h
 

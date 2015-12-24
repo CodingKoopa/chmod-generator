@@ -11,15 +11,14 @@ Dialog::Dialog(QWidget *parent) :
 {
     //setup ui
     ui->setupUi(this);
+
     //title
     QWidget::setWindowTitle("CHMOD Generator");
 
-    //set credit text, because it's annoying to do in design
-    ui->credit->setText("<a href=\"https://github.com/TheKoopaKingdom/CHMOD-Generator\">Made with love by TheKoopaKingdom.</a>");
-    ui->credit->setOpenExternalLinks(true);
-
     //add items to combo boxes(full function in addcomboboxitems.cpp)
     addItems();
+
+    createShortcuts();
 
     //change pathOut to contents of recentpath.txt
     ui->pathOut->document()->setPlainText(read());

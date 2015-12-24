@@ -31,6 +31,8 @@ private:
     //proto for returning recentpath.txt and writing to it
     QString read();
     void write();
+
+    void createShortcuts();
 };
 
 #endif // DIALOG_H
