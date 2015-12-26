@@ -186,16 +186,16 @@
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="uExeBox">
+              <widget class="QCheckBox" name="uWriteBox">
                <property name="text">
-                <string>Execute</string>
+                <string>Write</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="uWriteBox">
+              <widget class="QCheckBox" name="uExeBox">
                <property name="text">
-                <string>Write</string>
+                <string>Execute</string>
                </property>
               </widget>
              </item>
@@ -214,16 +214,16 @@
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="wExeBox">
+              <widget class="QCheckBox" name="wWriteBox">
                <property name="text">
-                <string>Execute</string>
+                <string>Write</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="wWriteBox">
+              <widget class="QCheckBox" name="wExeBox">
                <property name="text">
-                <string>Write</string>
+                <string>Execute</string>
                </property>
               </widget>
              </item>

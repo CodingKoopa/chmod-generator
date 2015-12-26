@@ -17,8 +17,6 @@ void Dialog::comBoxGen()
     //output choices and pathOut to output box
     ui->output->document()->setPlainText("chmod " + args + QString::number(root) + QString::number(user)
     + QString::number(world) + " " + ui->pathOut->toPlainText());
-
-    write();
 }
 
 void Dialog::cheBoxGen()
@@ -107,5 +105,6 @@ QString Dialog::argConfg()
     {
         args.append("-v ");
     }
+
     return args;
 }

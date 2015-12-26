@@ -39,6 +39,9 @@ void Dialog::on_browse_clicked()
 
     //set pathOut box based
     ui->pathOut->document()->setPlainText(path);
+
+    //write path to txt
+    write();
 }
 
 void Dialog::on_gen_clicked()
@@ -59,6 +62,10 @@ void Dialog::on_run_clicked()
 {
     //get command from output box
     QString commandFull = ui->output->toPlainText();
+    if(commandFull == "")
+    {
+        QMessageBox::information(this, "Error", "You didn't press generate, silly!");
+    }
 
     //terminal init
     QProcess terminal;
@@ -74,7 +81,7 @@ void Dialog::on_run_clicked()
     //if user wants feedback
     if(ui->verbose->isChecked() == true)
     {
-        QMessageBox::information(this, "CHMOD", output);
+        QMessageBox::information(this, "Run", output);
     }
 
     //exit
