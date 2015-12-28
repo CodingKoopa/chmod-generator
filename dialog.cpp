@@ -20,10 +20,15 @@ Dialog::Dialog(QWidget *parent) :
     //add items to combo boxes(full function in addcomboboxitems.cpp)
     addItems();
 
+    //create and assign button shortcuts
     createShortcuts();
 
     //change pathOut to contents of recentpath.txt
     ui->pathOut->document()->setPlainText(read());
+
+    //set tab defaults
+    ui->permissionsTab->setCurrentIndex(0);
+    ui->cheBoxTabs->setCurrentIndex(0);
 }
 
 Dialog::~Dialog()
@@ -46,6 +51,11 @@ void Dialog::on_browse_clicked()
 
 void Dialog::on_gen_clicked()
 {
+    /*The program has to know whether the user
+     * is using the check boxes or the combo
+     * boxes, so it checks the current index
+     * of the permissions tab.
+     */
     if (ui->permissionsTab->currentIndex() == 0)
     {
         comBoxGen();

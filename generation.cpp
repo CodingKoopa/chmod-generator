@@ -90,21 +90,28 @@ void Dialog::cheBoxGen()
 
 QString Dialog::argConfg()
 {
+    //define arg string
+
     QString args;
+
+    //if user wants subdirs, add -R to string
     if(ui->sub->isChecked() == true)
     {
         args.append("-R ");
     }
 
+    //if user wants to force, add -f to string
     if(ui->force->isChecked() == true)
     {
         args.append("-f ");
     }
 
+    //if user wants feedback window, add -v to string
     if(ui->verbose->isChecked() == true)
     {
         args.append("-v ");
     }
 
+    //return the string
     return args;
 }
