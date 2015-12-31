@@ -35,14 +35,14 @@ private:
     //proto for creating scs
     void createShortcuts();
 
-    //proto for generating combobox output
-    void comBoxGen();
+    //proto for getting options/arguments
+    QString argConfgMod();
+    QString argConfgOwn();
 
-    //proto for generation checkbox output
+    void comBoxGen();
     void cheBoxGen();
 
-    //proto for getting options/arguments
-    QString argConfg();
+    void chown(QString args);
 };
 
 #endif // DIALOG_H

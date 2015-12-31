@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>479</width>
+    <width>506</width>
     <height>556</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_7">
    <item>
     <widget class="QLabel" name="credit">
      <property name="text">
@@ -25,7 +25,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QGridLayout" name="inputLay">
+    <layout class="QFormLayout" name="inputLay">
      <item row="0" column="0">
       <layout class="QVBoxLayout" name="browseLay">
        <item>
@@ -53,44 +53,42 @@
        </item>
       </layout>
      </item>
-     <item row="0" column="1" rowspan="2">
-      <layout class="QVBoxLayout" name="optionsLay">
+     <item row="0" column="1">
+      <layout class="QHBoxLayout" name="chownLay">
        <item>
-        <widget class="QCheckBox" name="sub">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>Subdirectorys/files</string>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="ownerLay">
+         <item>
+          <widget class="QLabel" name="ownerText">
+           <property name="text">
+            <string>Owner</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPlainTextEdit" name="owner"/>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="force">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + F&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>Force</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="verbose">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + V&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>Verbose (feedback window)</string>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="groupLay">
+         <item>
+          <widget class="QLabel" name="groupText">
+           <property name="text">
+            <string>Group</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPlainTextEdit" name="group"/>
+         </item>
+        </layout>
        </item>
       </layout>
      </item>
      <item row="1" column="0">
       <widget class="QTabWidget" name="permissionsTab">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="comBoxTab">
         <attribute name="title">
@@ -128,12 +126,6 @@
           <widget class="QComboBox" name="worldBox"/>
          </item>
         </layout>
-        <zorder>rootBox</zorder>
-        <zorder>userText</zorder>
-        <zorder>userBox</zorder>
-        <zorder>worldBox</zorder>
-        <zorder>worldText</zorder>
-        <zorder>rootText</zorder>
        </widget>
        <widget class="QWidget" name="cheBoxTab">
         <attribute name="title">
@@ -235,6 +227,71 @@
        </widget>
       </widget>
      </item>
+     <item row="1" column="1">
+      <layout class="QVBoxLayout" name="optionLay">
+       <item>
+        <widget class="QLabel" name="chmodLab">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Chmod</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="sub">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Subdirectorys/files</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="force">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + F&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Force</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="verMod">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + V&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Verbose (feedback window)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="chownLab">
+         <property name="text">
+          <string>Chown</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="verOwn">
+         <property name="text">
+          <string>Verbose (feedback window)</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
     </layout>
    </item>
    <item>
@@ -250,20 +307,27 @@
       </widget>
      </item>
      <item>
-      <widget class="QPlainTextEdit" name="output">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarAsNeeded</enum>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="outputTextLay">
+       <item>
+        <widget class="QPlainTextEdit" name="chmodOut"/>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="chownOut">
+         <property name="maximumSize">
+          <size>
+           <width>16777212</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAsNeeded</enum>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="copyRun">
@@ -304,8 +368,8 @@
   <tabstop>worldBox</tabstop>
   <tabstop>sub</tabstop>
   <tabstop>force</tabstop>
-  <tabstop>verbose</tabstop>
-  <tabstop>output</tabstop>
+  <tabstop>verMod</tabstop>
+  <tabstop>chownOut</tabstop>
  </tabstops>
  <resources/>
  <connections/>

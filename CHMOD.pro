@@ -14,7 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         dialog.cpp \
-    addcomboboxitems.cpp \
     remember.cpp \
     shortcuts.cpp \
     generation.cpp

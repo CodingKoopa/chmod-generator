@@ -70,30 +70,57 @@ void Dialog::on_gen_clicked()
 
 void Dialog::on_run_clicked()
 {
-    //get command from output box
-    QString commandFull = ui->output->toPlainText();
-    if(commandFull == "")
+    //get chmod command from output box
+    QString chmodCom = ui->chmodOut->toPlainText();
+
+    //if user didn't press gen
+    if(chmodCom == "")
     {
         QMessageBox::information(this, "Error", "You didn't press generate, silly!");
+        return;
     }
 
     //terminal init
     QProcess terminal;
 
     //exec chmod command
-    terminal.start(commandFull);
+    terminal.start(chmodCom);
 
     //wait for finish
     terminal.waitForFinished(-1);
 
     //stream results to string
     QString output = terminal.readAllStandardOutput();
+    output.append(terminal.readAllStandardError());
+
     //if user wants feedback
-    if(ui->verbose->isChecked() == true)
+    if(ui->verMod->isChecked() == true)
     {
-        QMessageBox::information(this, "Run", output);
+        QMessageBox::information(this, "Chmod", output);
     }
 
+    //get chown command
+    QString chownCom = ui->chownOut->toPlainText();
+
+    //if the chown box has anything
+    if (chownCom != "")
+    {
+        //exec chown command
+        terminal.start(chownCom);
+
+        //wait for finish
+        terminal.waitForFinished(-1);
+
+        //stream results to string
+        QString output = terminal.readAllStandardOutput();
+        output.append(terminal.readAllStandardError());
+
+        //if user wants feedback
+        if(ui->verOwn->isChecked() == true)
+        {
+            QMessageBox::information(this, "Chown", output);
+        }
+    }
     //exit
     terminal.terminate();
 }
@@ -104,5 +131,26 @@ void Dialog::on_copy_clicked()
     QClipboard *clip = QApplication::clipboard();
 
     //copy output
-    clip->setText(ui->output->toPlainText());
+    clip->setText(ui->chmodOut->toPlainText());
 }
+
+void Dialog::addItems()
+{
+    //make a string for each item
+    QString n("None");
+    QString x("Execute");
+    QString w("Write");
+    QString wx("Write and Execute");
+    QString r("Read");
+    QString rx("Read and Execute");
+    QString rw("Read and Write");
+    QString rwx("Read, Write and Execute");
+
+    //put the strings into a list
+    QStringList list = (QStringList() << n << x << w << wx << r << rx << rw << rwx);
+
+    //put the lists into the combo boxes
+    ui->rootBox->addItems(list);
+    ui->userBox->addItems(list);
+    ui->worldBox->addItems(list);
+};

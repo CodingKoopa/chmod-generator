@@ -12,10 +12,15 @@ void Dialog::comBoxGen()
     int world(ui->worldBox->currentIndex());
 
     //configure args
-    QString args = argConfg();
+    QString args = argConfgMod();
+
+    QString argsOwn = argConfgOwn();
+
+    //output chown to output box
+    chown(argsOwn);
 
     //output choices and pathOut to output box
-    ui->output->document()->setPlainText("chmod " + args + QString::number(root) + QString::number(user)
+    ui->chmodOut->document()->setPlainText("chmod " + args + QString::number(root) + QString::number(user)
     + QString::number(world) + " " + ui->pathOut->toPlainText());
 }
 
@@ -82,23 +87,21 @@ void Dialog::cheBoxGen()
     }
 
     //configure args
-    QString args = argConfg();
+    QString args = argConfgMod();
 
+    QString argsOwn = argConfgOwn();
+
+    //output chown to output box
+    chown(argsOwn);
+    
     //output choices and pathOut to output box
-    ui->output->document()->setPlainText("chmod " + args + QString::number(root) + QString::number(user) + QString::number(world) + " " + ui->pathOut->toPlainText());
+    ui->chmodOut->document()->setPlainText("chmod " + args + QString::number(root) + QString::number(user) + QString::number(world) + " " + ui->pathOut->toPlainText());
 }
 
-QString Dialog::argConfg()
+QString Dialog::argConfgMod()
 {
     //define arg string
-
     QString args;
-
-    //if user wants subdirs, add -R to string
-    if(ui->sub->isChecked() == true)
-    {
-        args.append("-R ");
-    }
 
     //if user wants to force, add -f to string
     if(ui->force->isChecked() == true)
@@ -106,12 +109,38 @@ QString Dialog::argConfg()
         args.append("-f ");
     }
 
+    //if user wants subdirs, add -R to string
+    if(ui->sub->isChecked() == true)
+    {
+        args.append("-R ");
+    }
+
     //if user wants feedback window, add -v to string
-    if(ui->verbose->isChecked() == true)
+    if(ui->verMod->isChecked() == true)
     {
         args.append("-v ");
     }
 
     //return the string
     return args;
+}
+
+QString Dialog::argConfgOwn()
+{
+    QString args;
+    //if user wants feedback window, add -v to string
+    if(ui->verOwn->isChecked() == true)
+    {
+        args.append("-v ");
+    }
+    return args;
+}
+
+void Dialog::chown(QString args)
+{
+    //if the user entered something for either box, output
+    if (ui->owner->toPlainText() != "" || ui->group->toPlainText() != "")
+    {
+        ui->chownOut->document()->setPlainText("chown " + args + ui->owner->toPlainText() + ":" + ui->group->toPlainText() + " " + ui->pathOut->toPlainText());
+    }
 }
