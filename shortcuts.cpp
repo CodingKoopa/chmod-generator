@@ -36,7 +36,7 @@ void Dialog::createShortcuts()
     connect(ctrlV, SIGNAL(activated()), ui->verMod, SLOT(toggle()));
 
     //make subdirectory sc
-    QShortcut *ctrlS = new QShortcut(QKeySequence("CTRL+S"), ui->sub);
+    QShortcut *ctrlS = new QShortcut(QKeySequence("CTRL+S"), ui->subMod);
     //put into effect
-    connect(ctrlS, SIGNAL(activated()), ui->sub, SLOT(toggle()));
+    connect(ctrlS, SIGNAL(activated()), ui->subMod, SLOT(toggle()));
 }

@@ -37,6 +37,27 @@ Dialog::~Dialog()
     delete ui;
 }
 
+void Dialog::addItems()
+{
+    //make a string for each item
+    QString n("None");
+    QString x("Execute");
+    QString w("Write");
+    QString wx("Write and Execute");
+    QString r("Read");
+    QString rx("Read and Execute");
+    QString rw("Read and Write");
+    QString rwx("Read, Write and Execute");
+
+    //put the strings into a list
+    QStringList list = (QStringList() << n << x << w << wx << r << rx << rw << rwx);
+
+    //put the lists into the combo boxes
+    ui->rootBox->addItems(list);
+    ui->userBox->addItems(list);
+    ui->worldBox->addItems(list);
+};
+
 void Dialog::on_browse_clicked()
 {
     //create file dialog
@@ -66,7 +87,6 @@ void Dialog::on_gen_clicked()
         cheBoxGen();
     }
 }
-
 
 void Dialog::on_run_clicked()
 {
@@ -130,27 +150,10 @@ void Dialog::on_copy_clicked()
     //clipboard init
     QClipboard *clip = QApplication::clipboard();
 
+    QString text = ui->chmodOut->toPlainText();
+    text.append("\n");
+    text.append(ui->chownOut->toPlainText());
+
     //copy output
-    clip->setText(ui->chmodOut->toPlainText());
+    clip->setText(text);
 }
-
-void Dialog::addItems()
-{
-    //make a string for each item
-    QString n("None");
-    QString x("Execute");
-    QString w("Write");
-    QString wx("Write and Execute");
-    QString r("Read");
-    QString rx("Read and Execute");
-    QString rw("Read and Write");
-    QString rwx("Read, Write and Execute");
-
-    //put the strings into a list
-    QStringList list = (QStringList() << n << x << w << wx << r << rx << rw << rwx);
-
-    //put the lists into the combo boxes
-    ui->rootBox->addItems(list);
-    ui->userBox->addItems(list);
-    ui->worldBox->addItems(list);
-};

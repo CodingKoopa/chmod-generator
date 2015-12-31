@@ -15,17 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_7">
    <item>
-    <widget class="QLabel" name="credit">
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;a href=&quot;https://github.com/TheKoopaKingdom/CHMOD-Generator&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Made with love by TheKoopaKingdom&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="openExternalLinks">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QFormLayout" name="inputLay">
+    <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <layout class="QVBoxLayout" name="browseLay">
        <item>
@@ -58,7 +48,7 @@
        <item>
         <layout class="QVBoxLayout" name="ownerLay">
          <item>
-          <widget class="QLabel" name="ownerText">
+          <widget class="QLabel" name="ownerLab">
            <property name="text">
             <string>Owner</string>
            </property>
@@ -72,7 +62,7 @@
        <item>
         <layout class="QVBoxLayout" name="groupLay">
          <item>
-          <widget class="QLabel" name="groupText">
+          <widget class="QLabel" name="groupLab">
            <property name="text">
             <string>Group</string>
            </property>
@@ -96,7 +86,7 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="rootText">
+          <widget class="QLabel" name="rootLab">
            <property name="text">
             <string>Root Access:</string>
            </property>
@@ -106,7 +96,7 @@
           <widget class="QComboBox" name="rootBox"/>
          </item>
          <item>
-          <widget class="QLabel" name="userText">
+          <widget class="QLabel" name="userLab">
            <property name="text">
             <string>User Access:</string>
            </property>
@@ -116,7 +106,7 @@
           <widget class="QComboBox" name="userBox"/>
          </item>
          <item>
-          <widget class="QLabel" name="worldText">
+          <widget class="QLabel" name="worldLab">
            <property name="text">
             <string>World Access:</string>
            </property>
@@ -240,7 +230,24 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="sub">
+        <widget class="QCheckBox" name="verMod">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + V&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Verbose (feedback window)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="protRootMod">
+         <property name="text">
+          <string>Protect root</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="subMod">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + S&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
@@ -256,16 +263,6 @@
          </property>
          <property name="text">
           <string>Force</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="verMod">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + V&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>Verbose (feedback window)</string>
          </property>
         </widget>
        </item>
@@ -290,6 +287,68 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QCheckBox" name="protRootOwn">
+         <property name="text">
+          <string>Protect root</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="subOwn">
+         <property name="text">
+          <string>Subdirectorys/files</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="noderef">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Act on links, instead of what the link points to.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Don't dereference</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="onlyIfLay">
+         <item>
+          <widget class="QLabel" name="onlyIfLab">
+           <property name="text">
+            <string>Only if:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPlainTextEdit" name="oiowner">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Owner&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="colonLab">
+           <property name="text">
+            <string>:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPlainTextEdit" name="oigroup">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Group&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOff</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
       </layout>
      </item>
     </layout>
@@ -309,7 +368,11 @@
      <item>
       <layout class="QHBoxLayout" name="outputTextLay">
        <item>
-        <widget class="QPlainTextEdit" name="chmodOut"/>
+        <widget class="QPlainTextEdit" name="chmodOut">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QPlainTextEdit" name="chownOut">
@@ -366,9 +429,6 @@
   <tabstop>pathOut</tabstop>
   <tabstop>userBox</tabstop>
   <tabstop>worldBox</tabstop>
-  <tabstop>sub</tabstop>
-  <tabstop>force</tabstop>
-  <tabstop>verMod</tabstop>
   <tabstop>chownOut</tabstop>
  </tabstops>
  <resources/>

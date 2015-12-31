@@ -103,22 +103,28 @@ QString Dialog::argConfgMod()
     //define arg string
     QString args;
 
-    //if user wants to force, add -f to string
-    if(ui->force->isChecked() == true)
-    {
-        args.append("-f ");
-    }
-
-    //if user wants subdirs, add -R to string
-    if(ui->sub->isChecked() == true)
-    {
-        args.append("-R ");
-    }
-
     //if user wants feedback window, add -v to string
     if(ui->verMod->isChecked() == true)
     {
         args.append("-v ");
+    }
+
+    //if user wants to protect root, add --preserve-root to string
+    if(ui->protRootMod->isChecked() == true)
+    {
+        args.append("--preserve-root ");
+    }
+
+    //if user wants subdirs, add -R to string
+    if(ui->subMod->isChecked() == true)
+    {
+        args.append("-R ");
+    }
+
+    //if user wants to force, add -f to string
+    if(ui->force->isChecked() == true)
+    {
+        args.append("-f ");
     }
 
     //return the string
@@ -132,6 +138,31 @@ QString Dialog::argConfgOwn()
     if(ui->verOwn->isChecked() == true)
     {
         args.append("-v ");
+    }
+
+    if(ui->protRootOwn->isChecked() == true)
+    {
+        args.append("--preserve-root ");
+    }
+
+    //if user wants subdirs, add -R to string
+    if(ui->subOwn->isChecked() == true)
+    {
+        args.append("-R ");
+    }
+
+    //if user wants nodref, add h to string
+    //-h = --no-dereference
+    //--dereference is default
+    if(ui->noderef->isChecked() == true)
+    {
+        args.append("-h ");
+    }
+
+    //if user entered stuff for only if
+    if(ui->oiowner->toPlainText() != "" || ui->oigroup->toPlainText() != "")
+    {
+        args.append("--from=" + ui->oiowner->toPlainText() + ":" + ui->oigroup->toPlainText() + " ");
     }
     return args;
 }
