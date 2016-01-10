@@ -1,16 +1,15 @@
-#include "dialog.h"
-#include "ui_dialog.h"
-
 #include <QDir>
 #include <QTextStream>
 
-QString Dialog::read()
+#include "remember.h"
+
+QString read()
 {
     //get current dir
     QString path = QDir::currentPath();
 
     //create QFile based off current dir
-    QFile file(path + "/recentpath.txt");
+    QFile file(path + "/recent.txt");
 
     //if cannot read file
     if (!file.open(QFile::ReadOnly | QFile::Text))
@@ -32,13 +31,13 @@ QString Dialog::read()
     return text;
 }
 
-void Dialog::write()
+void write(QString contents)
 {
     //get current dir
     QString path = QDir::currentPath();
 
     //create QFile based off current dir
-    QFile file(path + "/recentpath.txt");
+    QFile file(path + "/recent.txt");
 
     //if cannot read to file
     if (!file.open(QFile::WriteOnly | QFile::Text))
@@ -50,7 +49,7 @@ void Dialog::write()
     QTextStream out (&file);
 
     //write pathOut box contents to txt
-    out << ui->pathOut->toPlainText();
+    out << contents;
 
     //nothing to return
     return;

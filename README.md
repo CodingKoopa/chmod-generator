@@ -9,7 +9,9 @@ CHMOD Gui made with C++ in Qt.
 
 I've been learning lots of Qt lately, so this is pretty much a glorified test.
 ![screenshot]
-(http://i.imgur.com/cwqBuPj.png)
+(http://thekoopakingdom.github.io/images/chmod-generator/screenshot.png)
+
+http://thekoopakingdom.github.io/chmod-generator.html
 
 #Features
 * Browse for files
@@ -18,7 +20,7 @@ I've been learning lots of Qt lately, so this is pretty much a glorified test.
 * Run the command without touching a terminal
 
 #To-do
-* chown support
 * more options
+* save more stuff to the recentpath file
 
 Have a nice day!

@@ -2,9 +2,9 @@
 #define DIALOG_H
 
 #include <QDialog>
-#include <QProcess>
 
-namespace Ui {
+namespace Ui
+{
 class Dialog;
 }
 
@@ -17,32 +17,13 @@ public:
     ~Dialog();
 
 private slots:
-    void on_gen_clicked();
     void on_copy_clicked();
     void on_run_clicked();
     void on_browse_clicked();
+    void on_gen_clicked();
 
 private:
     Ui::Dialog *ui;
-
-    //proto for addcomboboxitems
-    void addItems();
-
-    //proto for returning recentpath.txt and writing to it
-    QString read();
-    void write();
-
-    //proto for creating scs
-    void createShortcuts();
-
-    //proto for getting options/arguments
-    QString argConfgMod();
-    QString argConfgOwn();
-
-    void comBoxGen();
-    void cheBoxGen();
-
-    void chown(QString args);
 };
 
 #endif // DIALOG_H

@@ -11,13 +11,20 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = CHMOD
 TEMPLATE = app
 
+QMAKE_CXXFLAGS += -Wno-maybe-uninitialized
 
 SOURCES += main.cpp\
         dialog.cpp \
     remember.cpp \
     shortcuts.cpp \
+    symbolic.cpp \
     generation.cpp
 
-HEADERS  += dialog.h
+HEADERS  += dialog.h \
+    symbolic.h \
+    remember.h \
+    generation.h \
+    shortcuts.h
 
-FORMS    += dialog.ui
+FORMS    += dialog.ui \
+    symbolic.ui

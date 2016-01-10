@@ -1,104 +1,114 @@
 #include "dialog.h"
-#include "ui_dialog.h"
 
-#include <QDebug>
+#include "generation.h"
 
-void Dialog::comBoxGen()
+void Dialog::on_gen_clicked()
 {
+    //reset both boxes
+    ui->chmodOut->document()->setPlainText("");
+    ui->chownOut->document()->setPlainText("");
 
-    //get each combo box index
-    int root(ui->rootBox->currentIndex());
-    int user(ui->userBox->currentIndex());
-    int world(ui->worldBox->currentIndex());
+    //The program has to know whether the group
+    //is using the check boxes or the combo
+    //boxes, so it checks the current index
+    //of the permissions tab.
 
-    //configure args
-    QString args = argConfgMod();
+    //if the group is in the combo box tab
+    if (ui->permissionsTab->currentIndex() == 0)
+    {
+        //output "chmod" + args + owner + group + world + path to first box
+        ui->chmodOut->document()->setPlainText("chmod " + argConfgMod(ui) + QString::number(ui->ownBox->currentIndex()) +
+        QString::number(ui->grpBox->currentIndex()) + QString::number(ui->wldBox->currentIndex()) + " " +
+        ui->pathOut->toPlainText());
 
-    QString argsOwn = argConfgOwn();
+        //if the group entered something for either chown box, output
+        if (ui->owner->toPlainText() != "" || ui->group->toPlainText() != "")
+        {
+            //output "chown + owner + group + path
+            ui->chownOut->document()->setPlainText("chown " + argConfgOwn(ui) + ui->owner->toPlainText() + ":" +
+            ui->group->toPlainText() + " " + ui->pathOut->toPlainText());
+        }
+    }
 
-    //output chown to output box
-    chown(argsOwn);
+    //if the group is in the check box tab
+    if (ui->permissionsTab->currentIndex() == 1)
+    {
+        int owner;
 
-    //output choices and pathOut to output box
-    ui->chmodOut->document()->setPlainText("chmod " + args + QString::number(root) + QString::number(user)
-    + QString::number(world) + " " + ui->pathOut->toPlainText());
+        //if read is enabled, increment owner by 4
+        if (ui->rReadBox->isChecked() == true)
+        {
+            owner+= 4;
+        }
+
+        //if read is enabled, increment owner by 2
+        if (ui->rWriteBox->isChecked() == true)
+        {
+            owner+= 2;
+        }
+
+        //if read is enabled, increment owner by 4
+        if (ui->rExeBox->isChecked() == true)
+        {
+            owner+= 1;
+        }
+
+        int group;
+
+        //if read is enabled, increment group by 4
+        if (ui->uReadBox->isChecked() == true)
+        {
+            group+= 4;
+        }
+
+        //if read is enabled, increment group by 2
+        if (ui->uWriteBox->isChecked() == true)
+        {
+            group+= 2;
+        }
+
+        //if read is enabled, increment group by 4
+        if (ui->uExeBox->isChecked() == true)
+        {
+            group+= 1;
+        }
+
+        int world;
+
+        //if read is enabled, increment world by 4
+        if (ui->wReadBox->isChecked() == true)
+        {
+            world+= 4;
+        }
+
+        //if read is enabled, increment world by 2
+        if (ui->wWriteBox->isChecked() == true)
+        {
+            world+= 2;
+        }
+
+        //if read is enabled, increment world by 4
+        if (ui->wExeBox->isChecked() == true)
+        {
+            world+= 1;
+        }
+
+        //output "chmod" + args + owner + group + world + path to first box
+        ui->chmodOut->document()->setPlainText("chmod " + argConfgMod(ui) +
+        QString::number(owner) + QString::number(group) + QString::number(world) +
+        " " + ui->pathOut->toPlainText());
+
+        //if the group entered something for either chown box, output
+        if (ui->owner->toPlainText() != "" || ui->group->toPlainText() != "")
+        {
+            //output "chown + owner + group + path
+            ui->chownOut->document()->setPlainText("chown " + argConfgOwn(ui) + ui->owner->toPlainText() + ":" +
+            ui->group->toPlainText() + " " + ui->pathOut->toPlainText());
+        }
+    }
 }
 
-void Dialog::cheBoxGen()
-{
-    int root;
-
-    //if read is enabled, increment count by 4
-    if (ui->rReadBox->isChecked() == true)
-    {
-        root+= 4;
-    }
-
-    //if read is enabled, increment count by 2
-    if (ui->rWriteBox->isChecked() == true)
-    {
-        root+= 2;
-    }
-
-    //if read is enabled, increment count by 4
-    if (ui->rExeBox->isChecked() == true)
-    {
-        root+= 1;
-    }
-
-    int user;
-
-    //if read is enabled, increment count by 4
-    if (ui->uReadBox->isChecked() == true)
-    {
-        user+= 4;
-    }
-
-    //if read is enabled, increment count by 2
-    if (ui->uWriteBox->isChecked() == true)
-    {
-        user+= 2;
-    }
-
-    //if read is enabled, increment count by 4
-    if (ui->uExeBox->isChecked() == true)
-    {
-        user+= 1;
-    }
-
-    int world;
-
-    //if read is enabled, increment count by 4
-    if (ui->wReadBox->isChecked() == true)
-    {
-        world+= 4;
-    }
-
-    //if read is enabled, increment count by 2
-    if (ui->wWriteBox->isChecked() == true)
-    {
-        world+= 2;
-    }
-
-    //if read is enabled, increment count by 4
-    if (ui->wExeBox->isChecked() == true)
-    {
-        world+= 1;
-    }
-
-    //configure args
-    QString args = argConfgMod();
-
-    QString argsOwn = argConfgOwn();
-
-    //output chown to output box
-    chown(argsOwn);
-    
-    //output choices and pathOut to output box
-    ui->chmodOut->document()->setPlainText("chmod " + args + QString::number(root) + QString::number(user) + QString::number(world) + " " + ui->pathOut->toPlainText());
-}
-
-QString Dialog::argConfgMod()
+QString argConfgMod(Ui::Dialog *ui)
 {
     //define arg string
     QString args;
@@ -131,7 +141,7 @@ QString Dialog::argConfgMod()
     return args;
 }
 
-QString Dialog::argConfgOwn()
+QString argConfgOwn(Ui::Dialog* ui)
 {
     QString args;
     //if user wants feedback window, add -v to string
@@ -156,7 +166,7 @@ QString Dialog::argConfgOwn()
     //--dereference is default
     if(ui->noderef->isChecked() == true)
     {
-        args.append("-h ");
+        args.append("--no-dereference ");
     }
 
     //if user entered stuff for only if
@@ -165,13 +175,4 @@ QString Dialog::argConfgOwn()
         args.append("--from=" + ui->oiowner->toPlainText() + ":" + ui->oigroup->toPlainText() + " ");
     }
     return args;
-}
-
-void Dialog::chown(QString args)
-{
-    //if the user entered something for either box, output
-    if (ui->owner->toPlainText() != "" || ui->group->toPlainText() != "")
-    {
-        ui->chownOut->document()->setPlainText("chown " + args + ui->owner->toPlainText() + ":" + ui->group->toPlainText() + " " + ui->pathOut->toPlainText());
-    }
 }

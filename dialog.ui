@@ -6,16 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>506</width>
-    <height>556</height>
+    <width>509</width>
+    <height>656</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_7">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QFormLayout" name="formLayout">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+     </property>
      <item row="0" column="0">
       <layout class="QVBoxLayout" name="browseLay">
        <item>
@@ -77,8 +80,17 @@
      </item>
      <item row="1" column="0">
       <widget class="QTabWidget" name="permissionsTab">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="currentIndex">
         <number>0</number>
+       </property>
+       <property name="usesScrollButtons">
+        <bool>false</bool>
        </property>
        <widget class="QWidget" name="comBoxTab">
         <attribute name="title">
@@ -86,34 +98,157 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="rootLab">
+          <widget class="QLabel" name="ownLab">
            <property name="text">
-            <string>Root Access:</string>
+            <string>File Owner:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="rootBox"/>
+          <widget class="QComboBox" name="ownBox">
+           <item>
+            <property name="text">
+             <string>None</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Execute</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Write</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Write and Execute</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read and Execute</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read and Write</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read, Write, and Execute</string>
+            </property>
+           </item>
+          </widget>
          </item>
          <item>
-          <widget class="QLabel" name="userLab">
+          <widget class="QLabel" name="grpLab">
            <property name="text">
-            <string>User Access:</string>
+            <string>Group:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="userBox"/>
+          <widget class="QComboBox" name="grpBox">
+           <item>
+            <property name="text">
+             <string>None</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Execute</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Write</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Write and Execute</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read and Execute</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read and Write</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read, Write, and Execute</string>
+            </property>
+           </item>
+          </widget>
          </item>
          <item>
           <widget class="QLabel" name="worldLab">
            <property name="text">
-            <string>World Access:</string>
+            <string>World:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="worldBox"/>
+          <widget class="QComboBox" name="wldBox">
+           <item>
+            <property name="text">
+             <string>None</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Execute</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Write</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Write and Execute</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read and Execute</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read and Write</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Read, Write, and Execute</string>
+            </property>
+           </item>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -125,11 +260,11 @@
          <item>
           <widget class="QTabWidget" name="cheBoxTabs">
            <property name="currentIndex">
-            <number>2</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="rootTab">
             <attribute name="title">
-             <string>Root</string>
+             <string>Owner</string>
             </attribute>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
@@ -157,7 +292,7 @@
            </widget>
            <widget class="QWidget" name="userTab">
             <attribute name="title">
-             <string>User</string>
+             <string>Group</string>
             </attribute>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
@@ -215,6 +350,43 @@
          </item>
         </layout>
        </widget>
+       <widget class="QWidget" name="symb">
+        <attribute name="title">
+         <string>Symbolic</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>Enter Symbolic Mode</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>The symbolic mode allows you to modify some modes while leaving others untouched.</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::RichText</enum>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>This will open a new window.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </item>
      <item row="1" column="1">
@@ -241,6 +413,9 @@
        </item>
        <item>
         <widget class="QCheckBox" name="protRootMod">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Control + P&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Protect root</string>
          </property>
@@ -282,6 +457,9 @@
        </item>
        <item>
         <widget class="QCheckBox" name="verOwn">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shift + Control + V&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Verbose (feedback window)</string>
          </property>
@@ -289,6 +467,9 @@
        </item>
        <item>
         <widget class="QCheckBox" name="protRootOwn">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shift + Control + P&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Protect root</string>
          </property>
@@ -370,7 +551,7 @@
        <item>
         <widget class="QPlainTextEdit" name="chmodOut">
          <property name="readOnly">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -427,8 +608,8 @@
   <tabstop>run</tabstop>
   <tabstop>copy</tabstop>
   <tabstop>pathOut</tabstop>
-  <tabstop>userBox</tabstop>
-  <tabstop>worldBox</tabstop>
+  <tabstop>grpBox</tabstop>
+  <tabstop>wldBox</tabstop>
   <tabstop>chownOut</tabstop>
  </tabstops>
  <resources/>
